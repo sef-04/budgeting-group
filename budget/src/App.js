@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 
 import AppController from './component/AppController';
 
