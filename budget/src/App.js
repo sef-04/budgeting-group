@@ -1,9 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+
+import AppController from './component/AppController';
+
 
 function App() {
   return (
-    
+    <div className="App">
+      <>
+      <AppController/>
+      </>
+    </div>
   );
 }
 
