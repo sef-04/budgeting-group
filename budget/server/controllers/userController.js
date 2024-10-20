@@ -10,4 +10,23 @@ const registerUser = (req, res) => {
     })
 }
 
-module.exports = {registerUser};
+const loginUser = (req, res) => {
+    const {username, password} = req.body;
+    UserModel.findOne({username: username})
+    .then(user => {
+        if (user){
+            if(user.password === password){
+                res.json("Login Successful")
+            }
+            else{
+                res.json("The password is incorrect")
+            }
+        }
+
+        else{
+            res.json("User does not exist, Register first.")
+        }
+    })
+}
+
+module.exports = {registerUser, loginUser};
