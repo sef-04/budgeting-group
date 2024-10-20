@@ -52,15 +52,15 @@ body, html {
     padding: 15px;
     border: none;
     border-radius: 50px;
-    background-color: #de0337;
-    color: #ffffff;
+    background-color: #f8f6d9;
+    color: #1f1408;
     text-align: left;
     height: 30px;
     width: 500px;
   }
   
   input[type="text"]::placeholder, input[type="password"]::placeholder {
-    color: #f8f6d9 ;
+    color: #1f1408 ;
     font-family: "avant";
     padding: 5px;
   }
