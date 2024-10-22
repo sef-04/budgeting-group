@@ -9,7 +9,7 @@ app.use (express.json());
 app.use(cors());
 
 //database
-mongoose.connect("mongodb://localhost:27017/users");
+mongoose.connect("mongodb+srv://SefDatabase:3rdyear223@budgetingservicedatabas.akz8v.mongodb.net/Budget");
 
 
 app.use(userRoutes);
@@ -24,5 +24,4 @@ app.use(userRoutes);
 
 app.listen (8000, ()=>{
     console.log('Server is running at http://localhost:8000');
-
 });

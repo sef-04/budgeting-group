@@ -26,34 +26,39 @@ const Login = () => {
 
 
   return (
+    <div>
+      <img src='./elements/1.png' id='logo'></img>
+      <div className="login-container">
 
-    <div className="login-container">
-      <form>
-        <label htmlFor="username" >Username</label>
-        <input
-          type="text"
-          id="username"
-          placeholder='Enter Username'
-          required
-          onChange={(e) => setusername(e.target.value)}
-        />
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder='Enter Password'
-          required
-          onChange={(e) => setpassword(e.target.value)}
-        />
+        <form>
+          <label htmlFor="username" >Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder='Enter Username'
+            required
+            onChange={(e) => setusername(e.target.value)}
+          />
 
-        <button type="submit" id='button' onClick={handleSubmit}>Login</button>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder='Enter Password'
+            required
+            onChange={(e) => setpassword(e.target.value)}
+          />
 
-      </form>
-      <p id='link'>
-        Don't have an account? <Link to={"/register"}>Register here.</Link>
-      </p>
+          <button type="submit" id='button' onClick={handleSubmit}>Login</button>
+
+        </form>
+        <p id='link'>
+          Don't have an account? <Link to={"/register"}>Register here.</Link>
+        </p>
+      </div>
     </div>
+
 
 
   )

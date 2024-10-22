@@ -28,12 +28,16 @@ body, html {
   }
   
   .login-container {
-    margin-top: 100px;
     align-items: center;
     justify-content: center;
     text-align: center;
-    
  
+  }
+
+  #logo{
+    height: 170px;
+    margin-left: 100px;
+
   }
   
   form {
