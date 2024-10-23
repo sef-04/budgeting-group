@@ -9,7 +9,7 @@ app.use (express.json());
 app.use(cors());
 
 //database
-mongoose.connect("mongodb+srv://SefDatabase:3rdyear223@budgetingservicedatabas.akz8v.mongodb.net/Budget");
+mongoose.connect("mongodb+srv://SefDatabase:3rdyear223@mugocodes.1cipd.mongodb.net/Budget");
 
 
 app.use(userRoutes);

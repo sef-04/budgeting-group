@@ -19,6 +19,7 @@
 }
 
 body, html {
+    background-image: url(./bg/3.png);
     margin: 0;
     padding: 0;
     justify-content: center;

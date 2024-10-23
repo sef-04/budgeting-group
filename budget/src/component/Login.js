@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <div>
-      <img src='./elements/1.png' id='logo'></img>
+      <img src='./elements/1.png' id='logo' alt='Logo' />
       <div className="login-container">
 
 

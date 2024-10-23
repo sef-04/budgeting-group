@@ -21,7 +21,7 @@ const Regis = () => {
 
   return (
     <div>
-      <img src='./elements/1.png' id='logo'></img>
+      <img src='./elements/1.png' id='logo' alt='Logo' />
       
       <div id='reg-container'>
         <div className="register-container">
