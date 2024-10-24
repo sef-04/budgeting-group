@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-#navBar-dash {
+#navBar-ex {
     background-image: url(./bg/yellow.png);
     background-size: cover;
     background-position: center;
@@ -25,23 +25,24 @@
 
 .nav {
     color: #de0337;
+    gap: 0 2rem;
     display: flex;
     list-style: none;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin-top: -80px;
-    justify-content: space-between; 
-    margin-left: 7rem;
-     
 }
+
 .nav ul {
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
     gap: 1rem;
+
 }
+
 
 .nav a {
     color: inherit;
@@ -58,18 +59,6 @@
     text-decoration: solid;
 }
 
-/* Sign Out Button Styles */
-#sign {
-    padding: 3px 6px;  
-    background-color: #de0337;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;    
-    
-}
-
-#sign:hover {
-    background-color: #1f1408;
+#expensePage h1 {
+    text-align: end;
 }
