@@ -1,44 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import './css/Login.css';
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+//lib
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-  const [username, setusername] = useState("");
-  const [password, setpassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!username || !password) {
+      toast.error("All fields are required.");
+      return;
+    }
+
     axios.post('http://localhost:8000/login', { username, password })
       .then(response => {
-        if (response.data === "Login Successful") {
-          navigate('/dashboard')
+       
+        if (response.data === "User does not exist, Register first.") {
+          toast.error("User does not exist, please register first.");
+        } else if (response.data === "The password is incorrect") {
+          toast.error("The password is incorrect.");
+        } else if (response.data === "Login Successful") {
+          toast.success("Login Successful!")
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1000);
         }
-
       })
       .catch(error => {
         console.error(error);
+        toast.error("An error occurred during login. Please try again.");
       });
   };
-
-
 
   return (
     <div>
       <img src='./elements/1.png' id='logo' alt='Logo' />
       <div className="login-container">
-
-
-        <form>
-          <label htmlFor="username" >Username</label>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
             placeholder='Enter Username'
             required
-            onChange={(e) => setusername(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
 
           <label htmlFor="password">Password</label>
@@ -47,21 +62,19 @@ const Login = () => {
             id="password"
             placeholder='Enter Password'
             required
-            onChange={(e) => setpassword(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit" id='button' onClick={handleSubmit}>Login</button>
-
+          <button type="submit" id='button'>Login</button>
         </form>
         <p id='link'>
           Don't have an account? <Link to={"/register"}>Register here.</Link>
         </p>
       </div>
+      <ToastContainer />
     </div>
-
-
-
-  )
+  );
 }
 
-export default Login
+export default Login;

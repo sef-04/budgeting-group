@@ -9,17 +9,11 @@ app.use (express.json());
 app.use(cors());
 
 //database
-mongoose.connect("mongodb+srv://SefDatabase:3rdyear223@mugocodes.1cipd.mongodb.net/Budget");
+mongoose.connect("mongodb+srv://NicoDatabase:3rdyear223@budgetingservicedatabas.akz8v.mongodb.net/Budget");
 
 
 app.use(userRoutes);
 
-
-// app.post("/register", (req,res) =>{
-//     UserModel.create(req.body)
-//     .then(users => res.json(users))
-//     .catch(error => res.json(error))
-// })
 
 
 app.listen (8000, ()=>{
