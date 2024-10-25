@@ -15,9 +15,9 @@ export default function Dashboard() {
     useEffect(() => {
         const storedUsername = localStorage.getItem('username');
         if (storedUsername) {
-            setUsername(storedUsername); // Gets the LocalStorage Variable used in Login, used to set the Username for Dashboard
+            setUsername(storedUsername); // Set the username from local storage
         } else {
-            navigate("/login"); // Login Redirect if Username not Found
+            navigate("/login"); // Redirect to login if no username is found
         }
     }, [navigate]);
 
