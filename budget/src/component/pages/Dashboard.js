@@ -1,13 +1,25 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import '../css/Dashboard.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Dashboard() {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
 
     const handleSignOut = () => {
+        localStorage.removeItem('username'); // Clear username from storage
         navigate("/login");
     };
+
+    // Fetch user data on component mount
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername); // Set the username from local storage
+        } else {
+            navigate("/login"); // Redirect to login if no username is found
+        }
+    }, [navigate]);
 
     return (
         <div id="navBar-dash">
@@ -18,13 +30,12 @@ export default function Dashboard() {
                         <li><CustomLink to="/dashboard">Dashboard</CustomLink></li>
                         <li><CustomLink to="/budget">Budget</CustomLink></li>
                         <li><CustomLink to="/expense">Expense</CustomLink></li>
-                        
                     </ul>
                 </nav>
                 <button id="sign" onClick={handleSignOut}>Signout</button>
             </header>
             <div>
-                <h1>Dashboard</h1>
+                <h1>{username}'s Dashboard</h1>
             </div>
         </div>
     );
