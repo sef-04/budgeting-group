@@ -30,7 +30,7 @@ const Login = () => {
           toast.error("The password is incorrect.");
         } else if (response.data === "Login Successful") {
           toast.success("Login Successful!")
-          localStorage.setItem('username', username);
+          localStorage.setItem('username', username); // Storage of Username entered, to be used for Dashboard
           setTimeout(() => {
             navigate("/dashboard");
           }, 1000);

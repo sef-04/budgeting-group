@@ -13,11 +13,11 @@ export default function Dashboard() {
 
     // Fetch user data on component mount
     useEffect(() => {
-        const storedUsername = localStorage.getItem('username');
+        const storedUsername = localStorage.getItem('username'); // Get saved Login Username Information
         if (storedUsername) {
-            setUsername(storedUsername); // Set the username from local storage
+            setUsername(storedUsername); // Sets Username from localStorage to Dashboard
         } else {
-            navigate("/login"); // Redirect to login if no username is found
+            navigate("/login"); // Redirect to Login if User is not Found
         }
     }, [navigate]);
 
