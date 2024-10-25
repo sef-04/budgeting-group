@@ -18,7 +18,7 @@
     padding: 0;
 }
 
-body, html {
+#container {
     background-image: url(./bg/3.png);
     margin: 0;
     padding: 0;
@@ -37,7 +37,7 @@ body, html {
 
   #logo{
     height: 170px;
-    margin-left: 100px;
+    margin-left: 0px;
 
   }
   
@@ -53,7 +53,7 @@ body, html {
     text-align: left;
   }
   
-  input[type="text"], input[type="password"] {
+  #username, #password {
     padding: 15px;
     border: none;
     border-radius: 50px;
@@ -64,13 +64,13 @@ body, html {
     width: 500px;
   }
   
-  input[type="text"]::placeholder, input[type="password"]::placeholder {
+  #username::placeholder, #password::placeholder {
     color: #1f1408 ;
     font-family: "avant";
     padding: 5px;
   }
   
-  button {
+  #button {
     margin-top: 10px;
     margin-left: 31%;
     font-family: "bubble";

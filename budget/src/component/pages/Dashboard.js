@@ -15,9 +15,10 @@ export default function Dashboard() {
                 <img src='./elements/2.png' id='logo' alt='Logo' />
                 <nav className="nav">
                     <ul>
-                        <CustomLink to="/dashboard">Dashboard</CustomLink>
-                        <CustomLink to="/budget">Budget</CustomLink>
-                        <CustomLink to="/expense">Expense</CustomLink>
+                        <li><CustomLink to="/dashboard">Dashboard</CustomLink></li>
+                        <li><CustomLink to="/budget">Budget</CustomLink></li>
+                        <li><CustomLink to="/expense">Expense</CustomLink></li>
+                        
                     </ul>
                 </nav>
                 <button id="sign" onClick={handleSignOut}>Signout</button>

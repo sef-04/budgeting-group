@@ -42,9 +42,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <img src='./elements/1.png' id='logo' alt='Logo' />
+    <div id='container'> 
       <div className="login-container">
+      <img src='./elements/1.png' id='logo' alt='Logo' />
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input

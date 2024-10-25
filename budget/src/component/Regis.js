@@ -58,7 +58,6 @@ const Regis = () => {
   return (
     <div>
       <img src='./elements/1.png' id='logo' alt='Logo' />
-
       <div id='reg-container'>
         <div className="register-container">
           <form className="register-form" onSubmit={handleSubmit}>
@@ -98,7 +97,7 @@ const Regis = () => {
               />
             </div>
 
-            <button type="submit" className="register-button">Register</button>
+            <button type="submit" id="register-button">Register</button>
           </form>
           <p className="login-link">
             Already have an account? <Link to={"/login"}>Log-in here.</Link>

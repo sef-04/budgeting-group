@@ -1,65 +1,78 @@
+/* fonts */
+
+@font-face {
+    font-family: "avant";
+    src: url(./fonts/AvantGardeBookBT.ttf);
+}
+
+
+@font-face {
+    font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
-     /* Added to ensure consistent sizing */
-  }
-  
-  #navBar-dash {
+
+}
+
+#navBar-dash {
     background-image: url(./bg/yellow.png);
     background-size: cover;
     background-position: center;
     height: 100vh;
     width: 100vw;
-  }
-  
-  header {
+}
+
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 40px;
-  }
-  
-  #logo {
-    height: 120px; /* Adjusted size as needed */
+
+}
+
+#logo {
+    height: 120px;
     flex-shrink: 0;
-  }
-  
-  .nav {
-    flex-grow: 1; /* Takes up remaining space between logo and sign-out button */
+}
+
+.nav {
+    flex-grow: 1;
     display: flex;
     justify-content: center;
-  }
-  
-  .nav ul {
+}
+
+.nav ul {
     display: flex;
     gap: 2rem;
     list-style: none;
-    padding-top: 70px;
-    margin: 0;
-  }
-  
-  .nav a {
+
+}
+
+.nav a {
     color: #de0337;
     text-decoration: none;
     font-size: 19px;
     padding: 0.5rem 1rem;
-  }
-  
-  .nav li:hover a {
+}
+
+.nav li:hover a {
     color: #1f1408;
-  }
-  
-  #sign {
+}
+
+#sign {
     padding: 10px 20px;
     background-color: #de0337;
-    color: white;
+    color: #f8f6d9;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
     width: 150px;
-  }
-  
-  #sign:hover {
+    margin-right: 30px;
+}
+
+#sign:hover {
     background-color: #1f1408;
-  }
+}
