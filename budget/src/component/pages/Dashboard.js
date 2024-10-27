@@ -43,7 +43,7 @@ export default function Dashboard() {
                 <button id="sign" onClick={handleSignOut}>Signout</button>
             </header>
             <div>
-                <h1>{username}'s Dashboard</h1>
+             <h1><span className="username">{username}'s</span> Dashboard</h1>
                 {!hasBudget && (
                     <div className="budget-message">
                         <p>You have no Active budget, yet!</p>

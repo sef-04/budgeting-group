@@ -111,3 +111,8 @@ header {
 .budget-message button:hover {
     background-color: #791d33;
 }
+
+/*username color*/
+.username{
+    color: #da0234;
+}

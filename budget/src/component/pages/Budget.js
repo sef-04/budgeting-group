@@ -8,6 +8,7 @@ export default function Budget() {
     const handleSignOut = () => {
         navigate("/login");
     };
+    
     return (
         <div id="navBar-bud">
             <header>

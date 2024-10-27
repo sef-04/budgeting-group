@@ -1,7 +1,7 @@
-
-
+//UserController
 const UserModel = require("../models/Users");
 
+//register
 const registerUser = (req, res) => {
     const { username, password, confirmPassword } = req.body;
 
@@ -39,6 +39,7 @@ const registerUser = (req, res) => {
         });
 };
 
+//login 
 const loginUser = (req, res) => {
     const { username, password } = req.body;
 
@@ -64,4 +65,4 @@ const loginUser = (req, res) => {
         })
 }
 
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser};
