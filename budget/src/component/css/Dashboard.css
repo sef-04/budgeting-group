@@ -83,3 +83,31 @@ header {
 #sign:hover {
     background-color: #1f1408;
 }
+
+/*Here for the create button with the You have no active budget, yet!*/
+.budget-message {
+    text-align: center;
+    font-size: 55px;
+    margin-top: 250px;
+    font-family: "avant";
+    src: url(./fonts/AvantGardeBookBT.ttf);
+}
+
+/*Here for the button create one here*/
+.budget-message button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #de0337;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "avant";
+    src: url(./fonts/AvantGardeBookBT.ttf);
+    font-size: 15px;
+}
+
+/*Here for the button create one here, hover edition*/
+.budget-message button:hover {
+    background-color: #791d33;
+}
