@@ -1,3 +1,4 @@
+//User Controller
 const UserModel = require("../models/Users");
 
 // Register a new user
@@ -74,7 +75,7 @@ const UserModel = require("../models/Users");
         });
     };
 
-// Update an existing budget for a user
+// Updates an existing budget for a user
     const updateBudget = (req, res) => {
         const { userId, budgetId, budgetname, amount } = req.body;
 

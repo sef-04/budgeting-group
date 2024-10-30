@@ -13,6 +13,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  //handles the logic for login
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,14 +24,13 @@ const Login = () => {
 
     axios.post('http://localhost:8000/login', { username, password })
       .then(response => {
-       
         if (response.data === "User does not exist, Register first.") {
           toast.error("User does not exist, please register first.");
         } else if (response.data === "The password is incorrect") {
           toast.error("The password is incorrect.");
         } else if (response.data === "Login Successful") {
           toast.success("Login Successful!")
-          localStorage.setItem('username', username); // Storage of Username entered, to be used for Dashboard
+          localStorage.setItem('username', username); // Store the username in localStorage
           setTimeout(() => {
             navigate("/dashboard");
           }, 1000);
@@ -40,7 +40,7 @@ const Login = () => {
         console.error(error);
         toast.error("An error occurred during login. Please try again.");
       });
-  };
+};
 
   return (
     <div id='container'> 
