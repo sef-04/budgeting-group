@@ -143,6 +143,91 @@ header {
     color: #1f1408;
 }
 
+/* Budgets card styling  */
+#budget-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+#budget-item {
+    background-color: #de0337;
+    width: 350px;
+    height: 100px;
+    list-style: none;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction:column;
+    color: #f8f6d9;
+    font-family: "bubble";
+    margin-top: 20px;
+}
+
+#budtit{
+    justify-content: space-between;
+    display: flex;
+}
+
+#bud-name {
+    margin-top: 5px;
+    font-size: 28px;
+    color: #f8f6d9;
+    width: 200px;
+    max-width: 200px;
+    height: 65px;
+    max-height: 65px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+/* amount */
+
+#amounts{
+    width:fit-content;
+    align-items: end;
+    word-wrap: break-word;
+    overflow: hidden; /* Hides overflowing text */
+    text-overflow: ellipsis; /* Adds '...' if text overflows */
+}
+
+#bud-amo, #bud {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: "avant";
+    color: #f8f6d9;
+    width:fit-content;
+    margin-left: auto;
+    word-wrap: break-word;
+    overflow: hidden; /* Hides overflowing text */
+    text-overflow: ellipsis; /* Adds '...' if text overflows */
+}
+
+/* edit and delete buttons */
+#ed-del{
+    margin-top: auto;
+}
+
+#edit-b, #delete-b{
+    background-color: #1f1408;
+    color: #f8f6d9;
+    border: none;
+    padding: 10px;
+    font-family: "avant";
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+#delete-b{
+    margin-left: 10px;
+}
+
+
+
+
 ._allBudgets{
     font-size: 30px;
     font-family: "bubble";
