@@ -1,0 +1,245 @@
+/* fonts */
+
+@font-face {
+    font-family: "avant";
+    src: url(./fonts/AvantGardeBookBT.ttf);
+}
+
+@font-face {
+    font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container-h {
+    background-image: url(./bg/yellow.png);
+    background-size: cover;
+    background-position: center;
+    
+
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    position: relative;
+    /* Fixes the header at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /* Ensures it stays above other content */
+
+}
+
+/* Styling for the logo */
+#logo-h {
+    height: 120px;
+    flex-shrink: 0;
+}
+
+/* for all sections */
+#allsec {
+    background-image: url(./bg/yellow.png);
+    background-size: cover;
+    background-position: center;
+    
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* home budgets top*/
+.sections {
+    background-image: url(./bg/yellow.png);
+
+}
+
+#top {
+    margin-left: 50px;
+    display: flex;
+}
+
+/* home budgets top-left*/
+#top-left {
+    margin-left: 85px;
+}
+
+#budgets {
+    height: 550px;
+    margin-left: 200px;
+}
+
+#effortless {
+
+    margin-top: 100px;
+    font-family: "bubble";
+    font-size: 40px;
+    width: 550px;
+}
+
+#instant {
+    color: #de0337;
+    font-family: "bubble";
+    font-size: 40px;
+    width: 550px;
+}
+
+#desc {
+    width: 450px;
+    font-family: "avant";
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#createacc {
+    padding: 10px 20px;
+    background-color: #de0337;
+    color: #f8f6d9;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 15px;
+    width: auto;
+    font-family: "avant";
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+/* middle section */
+#middle {
+    display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+#track,
+#money {
+    margin-top: 150px;
+    width: 150px;
+    height: 150px;
+}
+
+/* middle left & right */
+
+#m-left,
+#m-right {
+    text-align: center;
+    align-items: center;
+
+    margin-left: 145px;
+}
+
+#t1,
+#t2 {
+    margin-top: 20px;
+    font-family: "bubble";
+    font-size: 30px;
+}
+
+#d1,
+#d2 {
+    margin-top: 30px;
+    font-family: "avant";
+    font-size: 20px;
+    width: 500px;
+    margin-bottom: 170px;
+    color: #515151;
+}
+
+/* bottom */
+#bottom{
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 170px;
+}
+
+#b-top{
+    text-align: center;
+}
+
+#about{
+    font-family: "bubble";
+    font-size: 35px;
+    padding-top: 90px;
+    
+}
+
+#red{
+    color: #de0337;
+}
+
+#abt-desc{
+    text-align: center;
+    margin-top: 20px;
+    font-family: "avant";
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #515151;
+    width: 85vw;
+    margin-left: 70px;
+}
+
+#b-bot{
+    display: flex;
+    
+}
+
+#b-left, #b-right{
+    background-color: rgba(31, 20, 8, 0.1);
+    width: 700px;
+    margin: 20px;
+    padding: 30px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+#mission-t, #vision-t{
+    font-family: "bubble";
+    margin-bottom: 5px;
+}
+
+#mission, #vision{
+    font-family: "avant";
+}
+
+/* FOOTER */
+#footer{
+    background-color: #1f1408;
+    display: flex;
+}
+
+.list{
+    list-style: none;
+}
+
+.tt{
+    margin-bottom: 8px;
+}
+
+/* FOLLOW AND CONTACT */
+#footer-r{
+    font-family: "avant";
+    color: #f8f6d9;
+    padding-top: 30px;
+    display: flex;
+    margin-left: 62%;
+}
+
+.follow{
+    color: #fff1d7;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.contact{
+    margin-left: 50px;
+    font-size: 15px;
+}

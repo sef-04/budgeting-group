@@ -18,20 +18,20 @@
   padding: 0;
 }
 
-body,
-html {
+#container {
   background-image: url(./bg/3.png);
   margin: 0;
   padding: 0;
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: block;
   height: 100vh;
 }
 
-#logo {
-  height: 150px;
-  margin-left: 132px;
+#logo-r {
+  height: 135px;
+  
+  margin-left: 120px;
 }
 
 .register-container {
@@ -41,15 +41,16 @@ html {
 }
 
 .register-form {
-  padding: 30px;
+  padding-bottom: 30px;
   border-radius: 8px;
+  gap: 15px;
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
-label {
+#r-user, #r-pass, #r-cpass {
   display: block;
   font-size: 20px;
   font-family: "bubble";
@@ -82,7 +83,6 @@ label {
 
 #register-button {
   margin-top: 10px;
-  margin-left: 31%;
   font-family: "bubble";
   background-color: #1f1408;
   color: #f8f6d9;

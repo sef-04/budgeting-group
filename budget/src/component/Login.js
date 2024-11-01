@@ -13,7 +13,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  //handles the logic for login
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,13 +23,14 @@ const Login = () => {
 
     axios.post('http://localhost:8000/login', { username, password })
       .then(response => {
+       
         if (response.data === "User does not exist, Register first.") {
           toast.error("User does not exist, please register first.");
         } else if (response.data === "The password is incorrect") {
           toast.error("The password is incorrect.");
         } else if (response.data === "Login Successful") {
           toast.success("Login Successful!")
-          localStorage.setItem('username', username); // Store the username in localStorage
+          localStorage.setItem('username', username); // Storage of Username entered, to be used for Dashboard
           setTimeout(() => {
             navigate("/dashboard");
           }, 1000);
@@ -40,14 +40,15 @@ const Login = () => {
         console.error(error);
         toast.error("An error occurred during login. Please try again.");
       });
-};
+  };
 
   return (
-    <div id='container'> 
+    <div>
+      <div id='container'> 
       <div className="login-container">
       <img src='./elements/1.png' id='logo' alt='Logo' />
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username</label>
+        <form onSubmit={handleSubmit} id='l-form'>
+          <label htmlFor="username" id='l-user'>Username</label>
           <input
             type="text"
             id="username"
@@ -57,7 +58,7 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" id='l-pass'>Password</label>
           <input
             type="password"
             id="password"
@@ -67,14 +68,43 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit" id='button'>Login</button>
+          <button type="submit" id='l-button'>Login</button>
         </form>
         <p id='link'>
           Don't have an account? <Link to={"/register"}>Register here.</Link>
         </p>
       </div>
+
+      
       <ToastContainer />
     </div>
+
+      <footer id="footer">
+                    <img src='./elements/1.png' id='logo-h' alt='Logo' />
+                    <div id="footer-r">
+                        <div className="follow">
+                            <ul className="list">
+                                <p className="tt">Follow us:</p>
+                                <li ><a href="https://www.facebook.com/" className="follow">Facebook</a></li>
+                                <li ><a href="https://www.instagram.com/" className="follow">Instagram</a></li>
+                            </ul>
+
+
+
+                        </div>
+                        <div className="contact">
+                            <ul className="list">
+                                <p className="tt">Contact us:</p>
+                                <li >instantsaving@gmail.com</li>
+                                <li >1-instant-saving</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </footer>
+    </div>
+    
   );
 }
 

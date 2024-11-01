@@ -57,12 +57,14 @@ const Regis = () => {
 
   return (
     <div>
-      <img src='./elements/1.png' id='logo' alt='Logo' />
+      <div id="container">
+      
       <div id='reg-container'>
+        <img src='./elements/1.png' id='logo-r' alt='Logo' />
         <div className="register-container">
           <form className="register-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username" id='r-user'>Username</label>
               <input
                 type="text"
                 id="username"
@@ -74,7 +76,7 @@ const Regis = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" id='r-pass'>Password</label>
               <input
                 type="password"
                 id="password"
@@ -86,7 +88,7 @@ const Regis = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
+              <label htmlFor="confirmPassword" id='r-cpass'>Confirm Password</label>
               <input
                 type="password"
                 id="confirmPassword"
@@ -107,6 +109,34 @@ const Regis = () => {
 
       <ToastContainer />
     </div>
+
+    <footer id="footer">
+                    <img src='./elements/1.png' id='logo-h' alt='Logo' />
+                    <div id="footer-r">
+                        <div className="follow">
+                            <ul className="list">
+                                <p className="tt">Follow us:</p>
+                                <li ><a href="https://www.facebook.com/" className="follow">Facebook</a></li>
+                                <li ><a href="https://www.instagram.com/" className="follow">Instagram</a></li>
+                            </ul>
+
+
+
+                        </div>
+                        <div className="contact">
+                            <ul className="list">
+                                <p className="tt">Contact us:</p>
+                                <li >instantsaving@gmail.com</li>
+                                <li >1-instant-saving</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </footer>
+
+    </div>
+    
   )
 }
 

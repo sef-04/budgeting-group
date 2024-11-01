@@ -5,6 +5,8 @@ import Login from './Login'
 import Dashboard from './pages/Dashboard'
 import Budget from './pages/Budget'
 import Expense from './pages/Expense'
+import Home from './pages/Home'
+
 
 
 
@@ -18,6 +20,7 @@ const AppController = () => {
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/budget" element={<Budget/>} />
             <Route path="/expense" element={<Expense/>} />
+            <Route path="/" element={<Home/>}/>
         </Routes>
     </BrowserRouter>
   )
