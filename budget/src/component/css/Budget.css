@@ -1,20 +1,17 @@
 /* fonts */
-
 @font-face {
     font-family: "avant";
     src: url(./fonts/AvantGardeBookBT.ttf);
 }
-
-
 @font-face {
     font-family: "bubble";
     src: url(./fonts/Bubblegum.ttf);
 }
 
+/* rest of the page */
 * {
     margin: 0;
     padding: 0;
-
 }
 
 #navBar-bud {
@@ -29,7 +26,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 #logo {
@@ -47,7 +43,6 @@ header {
     display: flex;
     gap: 2rem;
     list-style: none;
-
 }
 
 .nav a {
@@ -78,7 +73,7 @@ header {
 }
 
 /* Budget container styling */
-#add{
+#add {
     font-family: "avant";
     font-size: 24px;
     color: #1f1408;
@@ -90,7 +85,7 @@ header {
     border-radius: 15px;
     margin: 30px auto;
     padding: 20px;
-    width: 80%;
+    width: 90%;
     text-align: center;
 }
 
@@ -118,7 +113,6 @@ header {
     color: #f8f6d9;
     font-family: "avant";
     padding: 5px;
-
 }
 
 .add-budget-btn {
@@ -143,7 +137,7 @@ header {
     color: #1f1408;
 }
 
-/* Budgets card styling  */
+/* Budgets card styling */
 #budget-list {
     display: flex;
     flex-wrap: wrap;
@@ -155,18 +149,18 @@ header {
 #budget-item {
     background-color: #de0337;
     width: 350px;
-    height: 100px;
+    height: 150px;
     list-style: none;
     border-radius: 20px;
     padding: 15px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     color: #f8f6d9;
     font-family: "bubble";
     margin-top: 20px;
 }
 
-#budtit{
+#budtit {
     justify-content: space-between;
     display: flex;
 }
@@ -184,51 +178,49 @@ header {
 }
 
 /* amount */
-
-#amounts{
-    width:fit-content;
+#amounts {
+    width: fit-content;
     align-items: end;
     word-wrap: break-word;
-    overflow: hidden; /* Hides overflowing text */
-    text-overflow: ellipsis; /* Adds '...' if text overflows */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-#bud-amo, #bud {
+#bud-amo,
+#bud {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
     font-family: "avant";
     color: #f8f6d9;
-    width:fit-content;
+    width: fit-content;
     margin-left: auto;
     word-wrap: break-word;
-    overflow: hidden; /* Hides overflowing text */
-    text-overflow: ellipsis; /* Adds '...' if text overflows */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* edit and delete buttons */
-#ed-del{
-    margin-top: auto;
+#ed-del {
+    size: 300px;
 }
 
-#edit-b, #delete-b{
+#edit-b,
+#delete-b {
     background-color: #1f1408;
     color: #f8f6d9;
     border: none;
-    padding: 10px;
+    padding: 15px;
     font-family: "avant";
     font-weight: 500;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
-#delete-b{
+#delete-b {
     margin-left: 10px;
 }
 
-
-
-
-._allBudgets{
+._allBudgets {
     font-size: 30px;
     font-family: "bubble";
     src: url(./fonts/Bubblegum.ttf);
@@ -236,9 +228,41 @@ header {
     color: #2e2c2c;
 }
 
-.Walakapabudget{
+.Walakapabudget {
     margin-left: 82px;
     font-size: 24px;
     font-family: "avant";
     src: url(./fonts/AvantGardeBookBT.ttf);
+}
+
+.outof{
+    font-size: 15px;
+    font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
+}
+
+.totalreached{
+    font-size: 15px;
+    font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
+}
+
+/* Progress bar */
+.progress-bar-container {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+.progress-bar {
+    height: 13px;
+    border-radius: 30px;
+    transition: width 0.5s ease;
+}
+
+.progress-bar.below-budget {
+    background-color: #3496f3;
+}
+
+.progress-bar.over-budget {
+    background-color: #943025;
 }

@@ -1,7 +1,8 @@
 //User Controller
 const UserModel = require("../models/Users");
 
-// Register a new user
+//Register.js
+    // Register a new user
     const registerUser = (req, res) => {
         const { username, password, confirmPassword } = req.body;
 
@@ -33,7 +34,8 @@ const UserModel = require("../models/Users");
             });
     };
 
-// Login an existing user
+//Login.js
+    // Login an existing user
     const loginUser = (req, res) => {
         const { username, password } = req.body;
 
@@ -59,7 +61,8 @@ const UserModel = require("../models/Users");
             });
     };
 
-// Create a new budget for a user
+//Budget.js
+    // Create a new budget for a user
     const createBudget = (req, res) => {
         const { userId, budgetname, amount } = req.body;
 
@@ -75,7 +78,7 @@ const UserModel = require("../models/Users");
         });
     };
 
-// Updates an existing budget for a user
+    // Updates an existing budget for a user
     const updateBudget = (req, res) => {
         const { userId, budgetId, budgetname, amount } = req.body;
 
@@ -91,7 +94,7 @@ const UserModel = require("../models/Users");
         });
     };
 
-// Delete a budget from a user's list
+    // Delete a budget from a user's list
     const deleteBudget = (req, res) => {
         const { userId, budgetId } = req.body;
 
@@ -107,5 +110,41 @@ const UserModel = require("../models/Users");
         });
     };
 
-// Exporting the controller functions
-module.exports = { registerUser, loginUser, createBudget, updateBudget, deleteBudget };
+//Expense.js
+    // Add an expense 
+    const addExpense = (req, res) => {
+        const { username, expenseName, amount, budget } = req.body;
+        const expense = {
+            expenseName,
+            amount,
+            budget,
+            date: new Date()
+        };
+
+        UserModel.findOneAndUpdate(
+            { username },
+            { $push: { expenses: expense } },
+            { new: true }
+        )
+        .then(user => res.json(expense))
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ error: "Internal Server Error" });
+        });
+    };
+    // Fetch expenses
+    const getExpenses = (req, res) => {
+        const { username } = req.query;
+
+        UserModel.findOne({ username }, 'expenses')
+            .then(user => {
+                if (!user) return res.status(404).json({ error: "User not found" });
+                res.json(user.expenses);
+            })
+            .catch(error => {
+                console.error(error);
+                res.status(500).json({ error: "Internal Server Error" });
+            });
+    };
+
+module.exports = { registerUser, loginUser, createBudget, updateBudget, deleteBudget, addExpense, getExpenses };

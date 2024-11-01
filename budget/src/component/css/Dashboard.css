@@ -1,5 +1,4 @@
 /* fonts */
-
 @font-face {
     font-family: "avant";
     src: url(./fonts/AvantGardeBookBT.ttf);
@@ -115,10 +114,24 @@ header {
 /*username color*/
 #dashname{
     font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
     color: #1f1408;
 }
 
 .username{
     color: #da0234;
     font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
+}
+
+.outof{
+    font-size: 15px;
+    font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
+}
+
+.totalreached{
+    font-size: 15px;
+    font-family: "bubble";
+    src: url(./fonts/Bubblegum.ttf);
 }
