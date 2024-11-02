@@ -15,11 +15,13 @@ export default function Budget() {
     const [budgetName, setBudgetName] = useState('');
     const [amount, setAmount] = useState('');
     const [editingBudget, setEditingBudget] = useState(null);
+    const [budgetsLoaded, setBudgetsLoaded] = useState(false); // New state for tracking budgets loaded
 
-    //Effects list
+    // Effects list
     useEffect(() => {
         getUserId();
-    }); // Used to get the Username from the local storage
+    }, []); // Used to get the Username from the local storage
+
     useEffect(() => {
         if (userId) {
             fetchBudgets();
@@ -27,7 +29,7 @@ export default function Budget() {
         }
     }, [userId]); // Used to get the budgets and expenses table from MongoDB 
 
-    //logic for retrieving the logged in username
+    // logic for retrieving the logged in username
     function getUserId() {
         const username = localStorage.getItem('username');
         if (!username) {
@@ -37,8 +39,7 @@ export default function Budget() {
         }
         // getter and setter for the username inputted
         axios.get(`http://localhost:8000/user/getUserId?username=${username}`)
-            .then(response => 
-                setUserId(response.data.userId))
+            .then(response => setUserId(response.data.userId))
             .catch(error => {
                 console.error("Error getting user ID:", error);
                 alert("Failed to get user ID.");
@@ -63,7 +64,12 @@ export default function Budget() {
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setBudgets(response.data);
-                    toast.success("Budgets loaded successfully!");
+                    if (response.data.length > 0) { // Only show success toast if budgets exist
+                        toast.success("Budgets loaded successfully!");
+                        setBudgetsLoaded(true); // Mark budgets as loaded
+                    } else {
+                        toast.info("No budgets found. Create a budget!"); // New toast for no budgets
+                    }
                 } else {
                     toast.error("Failed to load budgets!");
                     setBudgets([]);
