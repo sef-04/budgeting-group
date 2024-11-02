@@ -20,7 +20,7 @@ export default function Budget() {
     // Effects list
     useEffect(() => {
         getUserId();
-    }, []); // Used to get the Username from the local storage
+    }); // Used to get the Username from the local storage
 
     useEffect(() => {
         if (userId) {
