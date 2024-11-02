@@ -14,6 +14,7 @@ export default function Expense() {
     const [selectedBudget, setSelectedBudget] = useState("");
     const [budgets, setBudgets] = useState([]);
     const [expenses, setExpenses] = useState([]);
+    const [editingExpense, setEditingExpense] = useState(null);
 
     // Fetch budgets and expenses on component mount
     useEffect(() => {
@@ -61,16 +62,21 @@ export default function Expense() {
             .filter(expense => expense.budget === selectedBudget)
             .reduce((acc, expense) => acc + expense.amount, 0);
 
-        // Check if the new expense would exceed the budget
-        if (Number(amount) + totalExpenseForBudget > budgetAmount) {
+        // Calculate the new total expense after the update
+        const newTotalExpense = editingExpense
+            ? totalExpenseForBudget - editingExpense.amount + Number(amount)
+            : totalExpenseForBudget + Number(amount);
+
+        // Check if the new total expense exceeds the budget
+        if (newTotalExpense > budgetAmount) {
             toast.error("Expense amount exceeds the available budget for this category.");
             return false;
         }
         return true;
     };
 
-    // Handle adding expense with validation
-    const addExpense = () => {
+    // Handle adding or updating an expense
+    const handleExpenseSubmit = () => {
         if (!expenseName || !amount || !selectedBudget) {
             toast.error("All fields are required.");
             return;
@@ -89,16 +95,32 @@ export default function Expense() {
             budget: selectedBudget
         };
 
-        axios.post("http://localhost:8000/expense", expenseData)
-            .then(response => {
-                setExpenses([...expenses, response.data]); // Update local state with new expense
-                toast.success("Expense added successfully!");
-                resetForm();
-            })
-            .catch(error => {
-                console.error("Error adding expense:", error);
-                toast.error("Failed to add expense.");
-            });
+        if (editingExpense) {
+            // Update existing expense
+            expenseData.expenseId = editingExpense._id;
+            axios.put("http://localhost:8000/expense", expenseData)
+                .then(response => {
+                    setExpenses(response.data); // Update local state with new expenses
+                    toast.success("Expense updated successfully!");
+                    resetForm();
+                })
+                .catch(error => {
+                    console.error("Error updating expense:", error);
+                    toast.error("Failed to update expense.");
+                });
+        } else {
+            // Add new expense
+            axios.post("http://localhost:8000/expense", expenseData)
+                .then(response => {
+                    setExpenses([...expenses, response.data]); // Update local state with new expense
+                    toast.success("Expense added successfully!");
+                    resetForm();
+                })
+                .catch(error => {
+                    console.error("Error adding expense:", error);
+                    toast.error("Failed to add expense.");
+                });
+        }
     };
 
     // Reset form fields
@@ -106,6 +128,42 @@ export default function Expense() {
         setExpenseName("");
         setAmount("");
         setSelectedBudget("");
+        setEditingExpense(null);
+    };
+
+    // Handle editing an expense
+    const editExpense = (expense) => {
+        setEditingExpense(expense);
+        setExpenseName(expense.expenseName);
+        setAmount(expense.amount);
+        setSelectedBudget(expense.budget);
+    };
+
+    // Handle deleting an expense
+    const deleteExpense = (id) => {
+        const username = localStorage.getItem("username");
+        axios.delete('http://localhost:8000/expense', { data: { username, expenseId: id } })
+            .then(() => {
+                toast.success("Expense deleted successfully!");
+                fetchExpenses(); // Refresh expenses after deletion
+            })
+            .catch(error => {
+                console.error("Error deleting expense:", error);
+                toast.error("Failed to delete expense.");
+            });
+    };
+
+    // Fetch expenses when component mounts or updates
+    const fetchExpenses = () => {
+        const username = localStorage.getItem("username");
+        axios.get(`http://localhost:8000/user/expenses?username=${username}`)
+            .then(response => {
+                setExpenses(response.data);
+            })
+            .catch(error => {
+                console.error("Error getting expenses:", error);
+                toast.error("Failed to load expenses.");
+            });
     };
 
     return (
@@ -152,7 +210,7 @@ export default function Expense() {
                         ))}
                     </select>
                 </div>
-                <button id="add-expense" onClick={addExpense}>Add Expense</button>
+                <button id="add-expense" onClick={handleExpenseSubmit}>{editingExpense ? "Update Expense" : "Add Expense"}</button>
             </section>
 
             <section className="recent-expense">
@@ -164,6 +222,7 @@ export default function Expense() {
                             <th>Amount</th>
                             <th>Date</th>
                             <th>Budget Name</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -173,6 +232,10 @@ export default function Expense() {
                                 <td>{expense.amount}</td>
                                 <td>{new Date(expense.date).toLocaleDateString()}</td>
                                 <td>{expense.budget}</td>
+                                <td>
+                                    <button onClick={() => editExpense(expense)}>Edit</button>
+                                    <button onClick={() => deleteExpense(expense._id)}>Delete</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

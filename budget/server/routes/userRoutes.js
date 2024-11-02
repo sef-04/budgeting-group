@@ -46,8 +46,10 @@ router.get('/user/budgets', (req, res) => {
         });
 });
 
-//Routes for Expense.js
+// Routes for Expense.js
 router.post("/expense", userController.addExpense);
+router.put("/expense", userController.updateExpense); // Update an expense
+router.delete("/expense", userController.deleteExpense); // Delete an expense
 router.get("/user/expenses", userController.getExpenses);
 
 module.exports = router;

@@ -147,4 +147,48 @@ const UserModel = require("../models/Users");
             });
     };
 
-module.exports = { registerUser, loginUser, createBudget, updateBudget, deleteBudget, addExpense, getExpenses };
+    // Update an existing expense
+    const updateExpense = (req, res) => {
+        const { username, expenseId, expenseName, amount, budget } = req.body;
+
+        UserModel.findOneAndUpdate(
+            { username, "expenses._id": expenseId },
+            { $set: { "expenses.$.expenseName": expenseName, "expenses.$.amount": amount, "expenses.$.budget": budget, "expenses.$.date": new Date() } },
+            { new: true }
+        )
+        .then(user => {
+            if (user) {
+                res.json(user.expenses);
+            } else {
+                res.status(404).json({ error: "Expense not found" });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ error: "Internal Server Error" });
+        });
+    };
+
+    // Delete an expense
+    const deleteExpense = (req, res) => {
+        const { username, expenseId } = req.body;
+
+        UserModel.findOneAndUpdate(
+            { username },
+            { $pull: { expenses: { _id: expenseId } } },
+            { new: true }
+        )
+        .then(user => {
+            if (user) {
+                res.json(user.expenses);
+            } else {
+                res.status(404).json({ error: "Expense not found" });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ error: "Internal Server Error" });
+        });
+    };
+
+module.exports = { registerUser , loginUser , createBudget, updateBudget, deleteBudget, addExpense, getExpenses, updateExpense, deleteExpense };
