@@ -83,26 +83,36 @@ export default function Dashboard() {
                     </div>
                 ) : (
                     <div>
-                        <h2>Your Budgets</h2>
+                        <h2 id="YourBudgets">Your Budgets</h2>
                         <ul id="budget-list">
                             {budgets.map(budget => {
                                 const totalExpense = calculateTotalExpense(budget.budgetname);
                                 const percentageUsed = (totalExpense / budget.amount) * 100;
 
                                 return (
-                                    <li id="budget-item" key={budget._id}>
-                                        <span id="bud-name">{budget.budgetname}: ₱{budget.amount}</span>
-                                        <div className="progress-bar-container">
-                                            <div
-                                                className={`progress-bar ${percentageUsed > 100 ? "over-budget" : "below-budget"}`}
-                                                style={{ width: `${percentageUsed}%` }}
-                                            />
+                                    <li key={budget._id} className="budget-item" id="d-budget-item">
+                                    <div id="budtit">
+                                        <span id="bud-name">{budget.budgetname}</span>
+                                        <div id="amounts">
+                                            <span id="bud-amo">₱{budget.amount}</span>
+                                            <div id="bud">Budgeted</div>
                                         </div>
-                                        <p className="outof">{`₱${totalExpense} spent out of ₱${budget.amount}`}</p>
+                                    </div>
+                                    <div className="progress-bar-container">
+                                        <div
+                                            className={`progress-bar ${percentageUsed > 100 ? "over-budget" : "below-budget"}`}
+                                            style={{ width: `${percentageUsed}%` }}
+                                        />
+                                    </div>
+                                    <span className="outof"> <p id="tot">₱{totalExpense}</p> <p>spent out of</p> <p id="amm">₱{budget.amount}</p></span>
+                                    
+                                        <span id="d-overtxt">
                                         {percentageUsed >= 100 && (
-                                            <p className="totalreached">Budget total reached!</p>
+                                        <p className="d-totalreached">Budget total reached!</p>
                                         )}
-                                    </li>
+                                        </span>
+                    
+                                </li>
                                 );
                             })}
                         </ul>

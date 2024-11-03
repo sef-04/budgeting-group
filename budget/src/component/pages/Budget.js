@@ -2,6 +2,7 @@ import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Budget.css';
+import Swal from 'sweetalert2'
 
 // Toast Action for Errors and Success
 import { ToastContainer, toast } from 'react-toastify';
@@ -128,29 +129,65 @@ export default function Budget() {
         }
         //handles all updates for the updating of budget 
         const updatedBudget = { userId, budgetId: editingBudget._id, budgetname: budgetName, amount: Number(amount) };
-        axios.put('http://localhost:8000/budget', updatedBudget)
-            .then(() => {
-                toast.success("Budget updated successfully!");
-                fetchBudgets();
+
+        //validation if to update
+        Swal.fire({
+            title: "Are you sure you want to update this budget?",
+            text: "You won't be able to revert this!",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I want to update it."
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put('http://localhost:8000/budget', updatedBudget)
+                    .then(() => {
+                        toast.success("Budget updated successfully!");
+                        fetchBudgets();
+                        resetForm();
+
+
+                    })
+                    .catch(error => {
+                        console.error("Error updating budget:", error);
+                        toast.error("Failed to update budget.");
+                    });
+            }
+
+            else{
                 resetForm();
-            })
-            .catch(error => {
-                console.error("Error updating budget:", error);
-                toast.error("Failed to update budget.");
-            });
+            }
+        });
+
+
     };
 
     // logic for deleting a given budget to the database and for the user
     const deleteBudget = (id) => {
-        axios.delete('http://localhost:8000/budget', { data: { userId, budgetId: id } })
-            .then(() => {
-                toast.success("Budget deleted successfully!");
-                fetchBudgets();
-            })
-            .catch(error => {
-                console.error("Error deleting budget:", error);
-                toast.error("Failed to delete budget.");
-            });
+        Swal.fire({
+            title: "Are you sure you want to delete this budget?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#de0337",
+            cancelButtonColor: "#1f1408",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('http://localhost:8000/budget', { data: { userId, budgetId: id } })
+                    .then(() => {
+                        toast.success("Budget deleted successfully!");
+                        fetchBudgets();
+                    })
+                    .catch(error => {
+                        console.error("Error deleting budget:", error);
+                        toast.error("Failed to delete budget.");
+                    });
+            }
+        });
+
+
     };
 
     // clears the budget enter field after usage
@@ -168,7 +205,8 @@ export default function Budget() {
     };
 
     return (
-        <div id="navBar-bud">
+        <div id="b-container">
+            <div id="navBar-bud">
             <header>
                 <img src='./elements/2.png' id='logo' alt='Logo' />
                 <nav className="nav">
@@ -224,13 +262,22 @@ export default function Budget() {
                                             style={{ width: `${percentageUsed}%` }}
                                         />
                                     </div>
-                                    <p className="outof">{`₱${totalExpense} spent out of ₱${budget.amount}`}</p>
-                                    {percentageUsed >= 100 && (
-                                        <p className="totalreached">Budget total reached!</p>
-                                    )}
+                                    <span className="outof"> <p id="tot">₱{totalExpense}</p> <p>spent out of</p> <p id="amm">₱{budget.amount}</p></span>
+                                    
                                     <div id="ed-del">
+                                        <span id="overtxt">
+                                        {percentageUsed >= 100 && (
+                                        <p className="totalreached">Budget total reached!</p>
+                                        )}
+                                        </span>
+
+                                        <span id="eddelbut">
                                         <button onClick={() => editBudget(budget)} id="edit-b">Edit</button>
                                         <button onClick={() => deleteBudget(budget._id)} id="delete-b">Delete</button>
+
+                                        </span>
+                                    
+                                        
                                     </div>
                                 </li>
                             );
@@ -244,6 +291,9 @@ export default function Budget() {
             </div>
             <ToastContainer /> {/* used to show the errors and succession */}
         </div>
+
+        </div>
+        
     );
 }
 

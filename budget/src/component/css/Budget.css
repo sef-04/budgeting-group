@@ -14,12 +14,17 @@
     padding: 0;
 }
 
+#b-container{
+    background-image: url(./bg/yellow.png);
+    
+}
+
 #navBar-bud {
     background-image: url(./bg/yellow.png);
     background-size: cover;
     background-position: center;
     height: 100vh;
-    width: 100vw;
+    overflow: auto;
 }
 
 header {
@@ -148,8 +153,8 @@ header {
 
 #budget-item {
     background-color: #de0337;
-    width: 350px;
-    height: 150px;
+    width: 370px;
+    height: 185px;
     list-style: none;
     border-radius: 20px;
     padding: 15px;
@@ -163,6 +168,7 @@ header {
 #budtit {
     justify-content: space-between;
     display: flex;
+    
 }
 
 #bud-name {
@@ -188,6 +194,7 @@ header {
 
 #bud-amo,
 #bud {
+    margin-top: 0;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
@@ -198,11 +205,23 @@ header {
     word-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
+    background-color: #de0337;
 }
 
 /* edit and delete buttons */
 #ed-del {
+    margin-top: 10px;
     size: 300px;
+    display: flex;
+}
+
+#overtxt{
+    margin-top: 8px;
+    width:fit-content;
+}
+
+#eddelbut{
+    margin-left: auto;
 }
 
 #edit-b,
@@ -210,10 +229,10 @@ header {
     background-color: #1f1408;
     color: #f8f6d9;
     border: none;
-    padding: 15px;
+    padding: 10px ;
     font-family: "avant";
     font-weight: 500;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 #delete-b {
@@ -235,34 +254,49 @@ header {
     src: url(./fonts/AvantGardeBookBT.ttf);
 }
 
-.outof{
-    font-size: 15px;
-    font-family: "bubble";
-    src: url(./fonts/Bubblegum.ttf);
-}
-
-.totalreached{
-    font-size: 15px;
-    font-family: "bubble";
-    src: url(./fonts/Bubblegum.ttf);
-}
 
 /* Progress bar */
 .progress-bar-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
+    height: 25px;
     background-color: #f3f3f3;
-    border-radius: 8px;
+    border-radius: 15px;
+    
 }
 .progress-bar {
-    height: 13px;
-    border-radius: 30px;
+    height: 25px;
+    border-radius: 15px;
     transition: width 0.5s ease;
+    background-color: #1f1408;
 }
 
 .progress-bar.below-budget {
-    background-color: #3496f3;
+    background-color: #1f1408;
 }
 
-.progress-bar.over-budget {
-    background-color: #943025;
+.outof{
+    font-family: "avant";
+    display: flex;
+    overflow: hidden;
+    font-size: 20px;
+    height: 30px;
+}
+
+#tot{
+    margin-right: auto;
+}
+
+#amm{
+    margin-left: auto;
+}
+
+/* budget limit  text style */
+.totalreached {
+    color: #1f1408;
+    font-family: "bubble";
+    margin-right: auto;
+    font-size: large;
+    vertical-align: middle;
 }

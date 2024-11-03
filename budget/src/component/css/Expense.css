@@ -182,3 +182,17 @@ header {
   .recent-expense tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  #editex, #delex{
+    background-color: #1f1408;
+    color: #f8f6d9;
+    border: none;
+    padding: 10px ;
+    font-family: "avant";
+    font-weight: 500;
+    border-radius: 10px;
+  }
+
+  #delex{
+    margin-left: 10px;
+  }

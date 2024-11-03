@@ -6,6 +6,7 @@ import "../css/Expense.css";
 // Toast notifications
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 
 export default function Expense() {
     const navigate = useNavigate();
@@ -98,7 +99,18 @@ export default function Expense() {
         if (editingExpense) {
             // Update existing expense
             expenseData.expenseId = editingExpense._id;
-            axios.put("http://localhost:8000/expense", expenseData)
+            //validation if to update
+        Swal.fire({
+            title: "Are you sure you want to update this expense?",
+            text: "You won't be able to revert this!",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I want to update it."
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put("http://localhost:8000/expense", expenseData)
                 .then(response => {
                     setExpenses(response.data); // Update local state with new expenses
                     toast.success("Expense updated successfully!");
@@ -108,6 +120,15 @@ export default function Expense() {
                     console.error("Error updating expense:", error);
                     toast.error("Failed to update expense.");
                 });
+            }
+
+            else{
+                resetForm();
+            }
+        });
+
+
+            
         } else {
             // Add new expense
             axios.post("http://localhost:8000/expense", expenseData)
@@ -142,20 +163,36 @@ export default function Expense() {
     // Handle deleting an expense
     const deleteExpense = (id) => {
         const username = localStorage.getItem("username");
-        axios.delete('http://localhost:8000/expense', { data: { username, expenseId: id } })
-            .then(() => {
-                toast.success("Expense deleted successfully!");
-                fetchExpenses(); // Refresh expenses after deletion
-            })
-            .catch(error => {
-                console.error("Error deleting expense:", error);
-                toast.error("Failed to delete expense.");
-            });
+        Swal.fire({
+            title: "Are you sure you want to delete this budget?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#de0337",
+            cancelButtonColor: "#1f1408",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('http://localhost:8000/expense', { data: { username, expenseId: id } })
+                .then(() => {
+                    toast.success("Expense deleted successfully!");
+                    fetchExpenses(); // Refresh expenses after deletion
+                })
+                .catch(error => {
+                    console.error("Error deleting expense:", error);
+                    toast.error("Failed to delete expense.");
+                });
+                
+            }
+        });
+
+       
     };
 
     // Fetch expenses when component mounts or updates
     const fetchExpenses = () => {
         const username = localStorage.getItem("username");
+        
         axios.get(`http://localhost:8000/user/expenses?username=${username}`)
             .then(response => {
                 setExpenses(response.data);
@@ -233,8 +270,8 @@ export default function Expense() {
                                 <td>{new Date(expense.date).toLocaleDateString()}</td>
                                 <td>{expense.budget}</td>
                                 <td>
-                                    <button onClick={() => editExpense(expense)}>Edit</button>
-                                    <button onClick={() => deleteExpense(expense._id)}>Delete</button>
+                                    <button onClick={() => editExpense(expense)} id="editex">Edit</button>
+                                    <button onClick={() => deleteExpense(expense._id)} id="delex">Delete</button>
                                 </td>
                             </tr>
                         ))}

@@ -28,7 +28,7 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
-    
+    overflow: auto;
 }
 
 header {
@@ -124,14 +124,46 @@ header {
     src: url(./fonts/Bubblegum.ttf);
 }
 
+#YourBudgets{
+    font-family: "avant";
+    font-size: 30px;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+
 .outof{
     font-size: 15px;
     font-family: "bubble";
     src: url(./fonts/Bubblegum.ttf);
 }
 
-.totalreached{
-    font-size: 15px;
+/* cards budget */
+#d-budget-item {
+    background-color: #de0337;
+    width: 370px;
+    height: 170px;
+    list-style: none;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    color: #f8f6d9;
     font-family: "bubble";
-    src: url(./fonts/Bubblegum.ttf);
+    margin-top: 20px;
+}
+/* budget over */
+
+#d-overtxt{
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.d-totalreached{
+    color: #1f1408;
+    font-family: "bubble";
+    font-size: 25px;
+
+    
 }
