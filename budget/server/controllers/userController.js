@@ -97,17 +97,33 @@ const UserModel = require("../models/Users");
     // Delete a budget from a user's list
     const deleteBudget = (req, res) => {
         const { userId, budgetId } = req.body;
-
-        UserModel.findByIdAndUpdate(
-            userId,
-            { $pull: { budgetno: { _id: budgetId } } },
-            { new: true }
-        )
-        .then(user => res.json(user))
-        .catch(error => {
-            console.error(error);
-            res.status(500).json({ error: "Internal Server Error" });
-        });
+    
+        // First, find the budget and get its name
+        UserModel.findOne({ _id: userId, "budgetno._id": budgetId })
+            .then(user => {
+                if (!user) {
+                    return res.status(404).json({ error: "Budget not found" });
+                }
+    
+                const budgetName = user.budgetno.id(budgetId).budgetname;
+    
+                // Now, remove the budget and all associated expenses
+                return UserModel.findByIdAndUpdate(
+                    userId,
+                    { 
+                        $pull: { 
+                            budgetno: { _id: budgetId },
+                            expenses: { budget: budgetName } // Remove all expenses associated with the deleted budget
+                        } 
+                    },
+                    { new: true }
+                );
+            })
+            .then(user => res.json(user))
+            .catch(error => {
+                console.error(error);
+                res.status(500).json({ error: "Internal Server Error" });
+            });
     };
 
 //Expense.js

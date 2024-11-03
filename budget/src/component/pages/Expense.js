@@ -17,7 +17,7 @@ export default function Expense() {
     const [expenses, setExpenses] = useState([]);
     const [editingExpense, setEditingExpense] = useState(null);
 
-    // Fetch budgets and expenses on component mount
+    // Getting both Budgets and Expenses for every action (create, update and delete)
     useEffect(() => {
         const username = localStorage.getItem("username");
         if (!username) {
@@ -26,7 +26,7 @@ export default function Expense() {
             return;
         }
 
-        // Fetch budgets
+        // Get Budgets
         axios.get(`http://localhost:8000/user/budgets?username=${username}`)
             .then(response => {
                 setBudgets(response.data);
@@ -36,7 +36,7 @@ export default function Expense() {
                 toast.error("Failed to load budgets.");
             });
 
-        // Fetch expenses
+        // Get Expenses
         axios.get(`http://localhost:8000/user/expenses?username=${username}`)
             .then(response => {
                 setExpenses(response.data);
@@ -189,7 +189,7 @@ export default function Expense() {
        
     };
 
-    // Fetch expenses when component mounts or updates
+    // Getting Expenses for every action (create,update and delete)
     const fetchExpenses = () => {
         const username = localStorage.getItem("username");
         
@@ -203,6 +203,7 @@ export default function Expense() {
             });
     };
 
+    // Frontend Data/Layout and confirmations
     return (
         <div id="navBar-ex">
             <header>

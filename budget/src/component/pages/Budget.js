@@ -22,7 +22,6 @@ export default function Budget() {
     useEffect(() => {
         getUserId();
     }); // Used to get the Username from the local storage
-
     useEffect(() => {
         if (userId) {
             fetchBudgets();
@@ -53,7 +52,7 @@ export default function Budget() {
         navigate("/login");
     };
 
-    // getting the budget from the arraylist of the certain logged in user
+    // Getting Budgets for every action (create, update and delete)
     const fetchBudgets = () => {
         const username = localStorage.getItem('username');
         if (!username) {
@@ -65,11 +64,11 @@ export default function Budget() {
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setBudgets(response.data);
-                    if (response.data.length > 0) { // Only show success toast if budgets exist
+                    if (response.data.length > 0) { // IF Budgets exists
                         toast.success("Budgets loaded successfully!");
-                        setBudgetsLoaded(true); // Mark budgets as loaded
+                        setBudgetsLoaded(true); //Budgets have been loaded
                     } else {
-                        toast.info("No budgets found. Create a budget!"); // New toast for no budgets
+                        toast.info("No budgets found. Create a budget!"); //IF Budgets DO NOT exist
                     }
                 } else {
                     toast.error("Failed to load budgets!");
@@ -165,6 +164,7 @@ export default function Budget() {
 
     // logic for deleting a given budget to the database and for the user
     const deleteBudget = (id) => {
+        //Action that pertains to another validation, ARE YOU SURE?    
         Swal.fire({
             title: "Are you sure you want to delete this budget?",
             text: "You won't be able to revert this!",
@@ -177,8 +177,8 @@ export default function Budget() {
             if (result.isConfirmed) {
                 axios.delete('http://localhost:8000/budget', { data: { userId, budgetId: id } })
                     .then(() => {
-                        toast.success("Budget deleted successfully!");
-                        fetchBudgets();
+                        toast.success("Budget and associated expenses deleted successfully!");
+                        fetchBudgets(); // Refresh budgets after deletion
                     })
                     .catch(error => {
                         console.error("Error deleting budget:", error);
@@ -186,8 +186,6 @@ export default function Budget() {
                     });
             }
         });
-
-
     };
 
     // clears the budget enter field after usage
@@ -204,6 +202,7 @@ export default function Budget() {
             .reduce((total, expense) => total + expense.amount, 0);
     };
 
+    // Frontend Data/Layout and confirmations
     return (
         <div id="b-container">
             <div id="navBar-bud">
