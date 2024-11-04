@@ -116,6 +116,7 @@ header {
     font-family: "bubble";
     src: url(./fonts/Bubblegum.ttf);
     color: #1f1408;
+    margin-left: 25px;
 }
 
 .username{
@@ -128,7 +129,7 @@ header {
     font-family: "avant";
     font-size: 30px;
     margin-top: 15px;
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 
